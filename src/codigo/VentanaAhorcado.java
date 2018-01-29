@@ -45,7 +45,8 @@ public class VentanaAhorcado extends javax.swing.JFrame {
             dibujaImagenes(numeroDeFallos);
         }
     }
-    
+    //metodo para saber si la partida a terminado pq he ganado o perdido.
+            
     private void chequeaBoton(JButton _boton){
         _boton.setEnabled(false);
         chequeaLetra(_boton.getText());
@@ -53,6 +54,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     
     private void dibujaImagenes(int numeroImagen){
         URL nombreImagen;
+            
         switch (numeroImagen) {
             case 0:
                 nombreImagen = getClass().getResource("/imagenes/ahorcado_0.png");break;
@@ -68,6 +70,11 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 nombreImagen = getClass().getResource("/imagenes/ahorcado_5.png");break;
             default:
                 nombreImagen = getClass().getResource("/imagenes/ahorcado_fin.png");break;
+        }
+        if (numeroDeFallos == 7){
+            
+            VentanaAhorcado.main(null);
+            //System.exit(0);
         }
         
         
