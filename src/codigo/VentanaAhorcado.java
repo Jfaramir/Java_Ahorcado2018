@@ -17,6 +17,7 @@ import javax.swing.JButton;
 public class VentanaAhorcado extends javax.swing.JFrame {
     String palabraOculta = "CETYS";
             int numeroDeFallos = 0;
+            int numeroDeAciertos = 0;
     /**
      * Creates new form VentanaAhorcado
      */
@@ -27,23 +28,39 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     }
     
     private void chequeaLetra (String letra){
+         URL nombreImagen;
         letra = letra.toUpperCase();
         String palabraConGuiones = jLabel1.getText();
-        boolean acierto = false;
+        boolean acierto = false; 
         for (int i=0; i < palabraOculta.length();i++){
             if (palabraOculta.charAt(i) == letra.charAt(0)){
             //TODO quita gion bajo de la letra correspondiente
             palabraConGuiones = palabraConGuiones.substring(0, 2*i) + letra + palabraConGuiones.substring( 2*i +1);
             acierto = true;
+            
             }
+       
         }
+        if (!palabraConGuiones.contains("_")){
+             nombreImagen = getClass().getResource("/imagenes/acertasteTodo.png");
+             int ancho =jLabel2.getWidth();
+             int alto =jLabel2.getHeight();
+             ImageIcon miImagen = new ImageIcon( new ImageIcon(nombreImagen).getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+             jLabel2.setIcon(miImagen);
+             
+        }
+        
         //actualizo el valor que se muestra en la pantalla con las letras adivinadas 
         jLabel1.setText(palabraConGuiones);
+        
+         
         
         if (!acierto){
             numeroDeFallos++;
             dibujaImagenes(numeroDeFallos);
         }
+        
+        
     }
     //metodo para saber si la partida a terminado pq he ganado o perdido.
             
@@ -73,8 +90,8 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         }
         if (numeroDeFallos == 7){
             
-            VentanaAhorcado.main(null);
-            //System.exit(0);
+            //VentanaAhorcado.main(null);
+            System.exit(0);
         }
         
         
